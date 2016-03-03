@@ -1,0 +1,92 @@
+Things to cover
+
+Browser does a lot more than just run Javascript
+/////////////////////////////
+/         Browser           /
+/                           /
+/    rendering engine -     /
+/       what you see on     /
+/       the page            /
+/                           /
+/    javascript engine -    /
+/       what run's your     /
+/       code                /
+/                           /
+/    http requests -        /
+/       server requests     /
+/                           /
+/    event loops - watches  /
+/       things like clicks  /
+/       or taps             /      
+/                           /
+/                           /
+/////////////////////////////
+
+1. ---------------Javascript Engine---------------
+5 min - 7:00 - 7:05
+V8 engine - what is it?  What does it do?  It's c++ code that reads your javascript and translates into code the computer can understand
+It's what runs inside chrome.  This is why there are cross browser issues - Google used V8, Microsoft and Mozilla use different engines that may parse javascript slightly differently, meaning things might happen slightly differently
+
+
+2. ---------------Execution---------------
+10 min - 7:05 - 7:15
+What does V8 do?  Two main steps:
+    1. Parsing - which is why if you have a syntax error your program will crash right away.
+    2. Execution - 2 phases:
+        1. Global Execution Context Creation + Hoisting - before your code runs, the engine creates memory space for all variables and functions
+        2. Execution - runs code - assigns values to variables, executes functions, etc.  
+
+What's 'Execution Context'? Well, you can think of it as the location where code is located and accessible.  So when you first run a program, the global object is created, and everything inside your code is added to the global execution context.  All your code at the global level is thus accessible. New execution contexts are created whenever a function is executed - meaning a new environment is created to hold all of the variables inside that function. 
+
+
+3. --------------- Global Object---------------
+10 min - 7:15 - 7:25
+    1. During the initial execution phase, JS creates a global object that contains ALL the methods and properties that come out of the box with javascript
+    2. Predefined Javascript Global Object - 'this' refers to 'window' object
+
+
+4. ---------------Dynamic Typing---------------
+10 min - 7:25 - 7:35 
+    1. Javascript automatically figures out what type your variables
+    2. Type Coercion - if you use a logic statement (i.e. something == somethingelse), JS will coerce (or change) the type of the variables to match each other to see if they are the same. It can be confusing and potentially dangerous
+    3. First Class Functions - functions are a type just like objects and arrays and string.  They can be passed around into other functions.  In many cases you can treat them just like a number! 
+
+
+5. ---------------Scope + Closure---------------
+10 min - 7:35 - 7:45
+    1. Where are things available?
+    2. Closures - an execution context can 'close in' external variables that it references within itself.  These references stick around even if the execution context is finished.  
+
+
+6. ---------------THIS---------------
+10 min - 7:45 - 7:55
+    1. Javascript assigns 'this' to different objects depending on context.  It can be confusing how javascript decides to do this. Generally if you are working inside an object, this will refer to that object itself, but not always. If you are ever unsure what 'this' is pointing to, console.log it!
+
+
+7. ---------------Execution stack:---------------
+10 min - 7:55 - 8:05
+    1. When you call function, 
+        1. A new execution context is created, meaning all variables, objects functions defined inside the called function are created.
+        2. Code is executed 
+    2. If you execute a function INSIDE another function, the top level function stops, and the inner function takes over completely until it's finished.  At that point, the top level function continues operation.
+
+
+8. ---------------Objects---------------
+10 min - 8:05 - 8:15
+    1. By Reference vs. By Value - How things are passed around.  By value makes a copy, by references passes pointers to spots in memory
+    2. Object literals - Javascript has simple way to create objects on the fly
+    3. Function Constructors - Way in which Javascript attempts to mimic other programming languages that uses Classes
+        What's a class? A Class is a template used to generate objects. Javascript doesn't actually have classes, but it pretends to by using function Constructors (objects created using the 'new' keyword)
+    4. Prototypal Inheritance - Objects can inherit properties and methods from parent objects. These inherited properties don't exist on the object itself, but exist on something called the Prototype Chain.  If you call a property on an object, and it doesn't exist on the object itself, the engine will look up the chain to see if that property exists. 
+
+9. ---------------OTHER STUFF---------------
+10 min - 8:15 - 8:25
+    1. IIFE's
+        Namespace safe
+        Only expose one global object
+    2. Automatic semicolon insertion:
+        semicolon.js
+    3. Operators
+        1. Just functions, but functions with special syntax: * is just a special function that takes two parameters on either side. i.e. 8*7, and returns the result
+
+
